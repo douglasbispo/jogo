@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* Cor de fundo caso a imagem demore a carregar */
+    background-color: #f9f6f0; 
+    
+    /* COLOQUE O LINK OU CAMINHO DA SUA IMAGEM DE FUNDO AQUI EMBAIXO */
+    background-image: url('img/fundo.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos do Novo Formulário Dividido */
+.form-tela {
+    max-width: 800px !important; /* Aumenta a largura para caber as colunas */
+    background: rgba(255, 255, 255, 0.85); /* Fundo branco com leve transparência */
+    backdrop-filter: blur(8px); /* Efeito de vidro embaçado para a imagem de fundo */
+}
+
+.form-grid {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.form-coluna {
+    flex: 1; /* Faz as duas colunas terem exatamente o mesmo tamanho */
+    text-align: left;
+}
+
+.form-coluna h3 {
+    font-size: 1.1rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Caso a janela do notebook esteja pequena, as colunas ficam uma em cima da outra */
+@media (max-width: 650px) {
+    .form-grid {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.tela {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1, h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+/* TELA 1: Formulário */
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+#msg-erro {
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Essa é a mágica: se o span estiver vazio, ele some e não ocupa espaço */
+#msg-erro:empty {
+    display: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input[type="text"], input[type="date"], select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #fff; /* Garante fundo branco pro select */
+    cursor: pointer;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #e74c3c;
+}
+
+button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button:not([disabled]):hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* TELA 2: Quiz */
+.opcoes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-opcao {
+    background-color: #ecf0f1;
+    color: #333;
+    text-align: left;
+}
+
+.btn-opcao:hover {
+    background-color: #bdc3c7;
+}
+
+.btn-opcao.erro {
+    background-color: #e74c3c;
+    color: white;
+    animation: shake 0.5s;
+}
+
+/* Efeito de Chuva */
+#chuva-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.chuva-item {
+    position: absolute;
+    top: -10%;
+    animation: fall linear forwards;
+    font-size: 2rem;
+}
+
+.chuva-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid white;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* TELA 3: Frase Dramática */
+#tela3 {
+    background: transparent;
+    box-shadow: none;
+    max-width: 800px;
+}
+
+.frase-dramatica {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #4a3629;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.assinatura {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #e74c3c;
+    text-align: right;
+    margin-right: 2rem;
+}
+
+.polaroid {
+    position: absolute;
+    width: 150px;
+    height: 180px;
+    background: white;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: -1;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #ccc;
+}
+
+.foto1 { top: -20px; left: -80px; transform: rotate(-10deg); }
+.foto2 { bottom: 0px; left: -30px; transform: rotate(15deg); }
+.foto3 { top: 20px; right: -90px; transform: rotate(8deg); }
+.coracao-decor { position: absolute; font-size: 2rem; color: #e74c3c; opacity: 0.6;}
+
+/* TELA 4: O Pedido */
+#tela4 {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes-pedido {
+    display: flex;
+    gap: 20px;
+    margin-top: 2rem;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+}
+
+#btn-sim {
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    animation: pulse 1.5s infinite;
+}
+
+#btn-nao {
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    background-color: #95a5a6;
+    transition: top 0.2s, left 0.2s;
+}
+
+/* TELA 5: Celebração */
+.msg-final {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #e74c3c;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes fall {
+    to { top: 110%; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ESTILOS DA NOVA TELA 5 */
+#tela5 {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-top: 6px solid #2ecc71; /* Borda verde de sucesso no topo */
+}
+
+.sucesso-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 1.5s infinite;
+}
+
+.msg-titulo {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.status-box {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.status-verde {
+    display: block;
+    color: #2ecc71;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.certificado {
+    display: block;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.divisor {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 1.5rem 0;
+}
+
+.msg-acao {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* --- ESTILOS DO LOADING (Tela 2.5) --- */
+.loading-spinner {
+    border: 6px solid rgba(231, 76, 60, 0.2);
+    border-top: 6px solid #e74c3c;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- ESTILOS DA FLECHA E CORAÇÃO (Tela 3.5) --- */
+.animacao-container {
+    position: relative;
+    /* Aumentado o container para caber os elementos maiores */
+    width: 250px; 
+    height: 250px; 
+    margin: 40px auto;
+}
+
+.heart-css {
+    position: absolute;
+    /* Dobrado o tamanho do coração */
+    width: 100px; 
+    height: 100px; 
+    background: #e74c3c;
+    transform: rotate(-45deg);
+    /* Centralizando no container maior */
+    top: 75px; 
+    left: 75px;
+    animation: pulse-heart 1s infinite;
+}
+
+.heart-css::before, .heart-css::after {
+    content: "";
+    position: absolute;
+    /* Ajustado tamanho dos arredondados do coração */
+    width: 100px;
+    height: 100px;
+    background: #e74c3c;
+    border-radius: 50%;
+}
+
+/* Ajustado os encaixes dos arredondados (metade do tamanho novo) */
+.heart-css::before { top: -50px; left: 0; }
+.heart-css::after { top: 0; left: 50px; }
+
+.arrow-css {
+    position: absolute;
+    /* Flecha muito mais longa e grossa */
+    width: 350px; 
+    height: 10px; 
+    background: #2c3e50;
+    /* Ajustado posição vertical para cruzar o centro do coração maior */
+    top: 120px;   
+    /* Começa bem mais longe para a viagem demorar mais */
+    left: -800px; 
+    transform: rotate(15deg);
+    z-index: 10;
+    
+    /* AUMENTADO O TEMPO: Agora a flecha demora 3 segundos para atravessar (era 1.5s) */
+    /* Mantido o delay de 1s para o coração pulsar sozinho no início */
+    animation: shoot-arrow 3s forwards 1s ease-in-out; 
+}
+
+/* Ponta da flecha maior */
+.arrow-css::after {
+    content: '';
+    position: absolute;
+    right: -25px; /* Ajustado */
+    top: -15px;   /* Ajustado */
+    /* Triângulo da ponta maior */
+    border-top: 20px solid transparent; 
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid #2c3e50; 
+}
+
+/* Penas da flecha (detalhe extra opcional pra ficar mais bonitinho já que aumentamos) */
+.arrow-css::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 40px;
+    height: 30px;
+    background: repeating-linear-gradient(45deg, #2c3e50, #2c3e50 5px, #f9f6f0 5px, #f9f6f0 10px);
+    opacity: 0.8;
+}
+
+@keyframes pulse-heart {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.15); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+@keyframes shoot-arrow {
+    0% { left: -800px; }
+    /* Para exatamente atravessando o meio do coração maior */
+    100% { left: -50px; } 
+}

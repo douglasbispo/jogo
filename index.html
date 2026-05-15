@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <div id="chuva-container"></div>
+
+    <!-- TELA 1: Formulário Fake -->
+    <div id="tela1" class="tela form-tela">
+        <h2>Jogo do Amor</h2>
+        
+        <div class="form-grid">
+            <!-- Coluna 1: Dados Pessoais -->
+            <div class="form-coluna">
+                <h3>Dados Pessoais</h3>
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" placeholder="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label>Sobrenome:</label>
+                    <input type="text" placeholder="Seu sobrenome">
+                </div>
+                <div class="form-group">
+                    <label>Data de Nascimento:</label>
+                    <input type="date">
+                </div>
+            </div>
+
+            <!-- Coluna 2: Dados Confidenciais -->
+            <div class="form-coluna">
+                <h3>Dados Confidenciais</h3>
+                <div class="form-group">
+                    <label>Nome do amor da sua vida:</label>
+                    <input type="text" id="input-amor" placeholder="Digite com cuidado...">
+                    <span id="msg-erro"></span>
+                </div>
+                <div class="form-group">
+                    <label>Qual o seu nível de ciúmes?</label>
+                    <select id="select-ciumes">
+                        <option value="" disabled selected>Selecione uma opção...</option>
+                        <option value="baixo">Baixo</option>
+                        <option value="medio">Médio</option>
+                        <option value="alto">Alto</option>
+                        <option value="maximo">Se ele é meu, não é ciúmes!</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Qual seu nível de amor por ele?</label>
+                    <select id="select-nivel-amor">
+                        <option value="" disabled selected>Selecione uma opção...</option>
+                        <option value="baixo">É... eu gosto um pouquinho</option>
+                        <option value="medio">Bastante, ele é legalzinho</option>
+                        <option value="alto">Muito, ele é especial</option>
+                        <option value="maximo">Infinito, é o amor da minha vida!</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <button id="btn-avancar" onclick="avancarParaQuiz()" disabled>Avançar</button>
+    </div>
+
+    <!-- TELA 2: Enigma / Quiz -->
+    <div id="tela2" class="tela hidden">
+        <h2 id="pergunta-titulo">Verificação de Memória</h2>
+        <p id="pergunta-texto" style="margin-bottom: 1.5rem; font-weight: 600;">Carregando pergunta...</p>
+        <div class="opcoes-container" id="opcoes-container">
+            <!-- Opções geradas via JS -->
+        </div>
+    </div>
+
+    <!-- TELA de Loading -->
+    <div id="telaloading" class="tela hidden" style="background: transparent; box-shadow: none;">
+        <div class="loading-spinner"></div>
+        <h2 style="font-family: 'Courier New', Courier, monospace; color: #2c3e50;">Calculando compatibilidade...</h2>
+    </div>
+
+    <!-- TELA 3: Pausa Dramática -->
+    <div id="tela3" class="tela hidden">
+        <!-- COLOQUE AS FOTOS AQUI -->
+        <div class="polaroid foto1"><img src="assets/img/img1.jpeg" alt="Foto 1"></div>
+        <div class="polaroid foto2"><img src="assets/img/img2.jpeg" alt="Foto 2"></div>
+        <div class="polaroid foto3"><img src="assets/img/img3.jpeg" alt="Foto 3"></div>
+        
+        <div class="coracao-decor" style="top: 10%; right: 10%;">❤️</div>
+        <div class="coracao-decor" style="bottom: 20%; left: 5%;">✨</div>
+
+        <!-- SUA FRASE AQUI -->
+        <p class="frase-dramatica">"A gente já vive essa história todos os dias, mas eu queria deixar registrado no código-fonte das nossas vidas: você é o meu grande amor. TE AMO!"</p>
+        <p class="assinatura">- Douglas</p>
+        
+        <button style="margin-top: 3rem;" onclick="mostrarAnimacao()">Continuar</button>
+    </div>
+
+    <!-- TELA do coração -->
+    <div id="telaanimacao" class="tela hidden" style="background: transparent; box-shadow: none;">
+        <div class="animacao-container">
+            <div class="heart-css"></div>
+            <div class="arrow-css"></div>
+        </div>
+    </div>
+
+    <!-- TELA 4: O Pedido -->
+    <div id="tela4" class="tela hidden">
+        <h1>Você aceita namorar comigo?</h1>
+        <div class="botoes-pedido">
+            <button id="btn-sim" onclick="irParaTela(5)">Sim</button>
+            <button id="btn-nao">Não</button>
+        </div>
+    </div>
+
+    <!-- TELA 5: Celebração -->
+    <div id="tela5" class="tela hidden">
+        <div class="sucesso-icon">❤️</div>
+        <h2 class="msg-titulo">Upload de relacionamento concluído com sucesso!</h2>
+        
+        <div class="status-box">
+            Status atualizado: <br>
+            <span class="status-verde">NAMORANDO</span>
+            <span class="certificado">(Agora com certificado oficial!)</span>
+        </div>
+        
+        <hr class="divisor">
+        
+        <p class="msg-acao">
+            Pode beijar o desenvolvedor agora...<br><br>
+            e depois feche o notebook, porque tem <strong>mais uma surpresinha</strong> te esperando lá no quarto.
+        </p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/script.js"></script>
+</body>
+</html>
